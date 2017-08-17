@@ -1,5 +1,5 @@
 student: public({
-  balance: currency_value, # cashier issued Philippine Peso-pegged token for e-transaction in PSHS
+  balanceOf: currency_value, # cashier issued Philippine Peso-pegged token for e-transaction in PSHS
   id_num: bytes32, # Registrar specified Id number (e.g. "13-63623")
 	enrolled: bool,
 	first_name: bytes32, # Legal first name
@@ -33,8 +33,8 @@ def issuePeso(_amount: num, _to: address):
 	self.reserve += _amount 	  # Add _amount to current reserve
 	
 def transfer(_to: address, _amount: currency_value):
-	assert self.student[msg.sender].balance >= _amount 	# Throw if send amount greater than balance
+	assert self.student[msg.sender].balanceOf >= _amount 	# Throw if send amount greater than balance
 		  
-	self.student[msg.sender].balance -= _amount
-	self.student[_to].balance += _amount
+	self.student[msg.sender].balanceOf -= _amount
+	self.student[_to].balanceOf += _amount
 	
