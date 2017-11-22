@@ -11,5 +11,7 @@ Decentralized Student Identity using Ethereum and RFID - Experimental
 
 ## Installation:
 
+```Upload to Pisay XYZ Development Box```
+
 ## LICENSE:
 MIT License
