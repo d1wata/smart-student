@@ -1,0 +1,36 @@
+/*COLORS*/
+.color-red{color: #FF0000;}
+.color-green{color: #6cbc42;}
+.color-blue{color: #0080c5;}
+.color-twitter{color:#00aced;}
+.color-facebook{color:#00539f;}
+.color-linkedin{color:#0176b5;}
+
+/*NAVBAR STYLES*/
+.navbar-border{border-bottom: solid 5px #0080c5;}
+.login-panel {
+    min-width: 250px;
+    border-top: 14px solid #0080c5;
+    border-right: 1px solid #0080c5;
+    border-bottom-right-radius:0.5em;
+    -moz-border-radius-bottomright:0.5em;
+    border-bottom: 3px solid #0080c5;
+    border-left: 1px solid #0080c5;
+    border-bottom-left-radius:0.5em;
+    -moz-border-radius-bottomleft:0.5em;
+    }
+.dropdown-header { display: block !important; padding-bottom: 30px; height: 10px; }
+.login-header { font-size: 20px; font-weight: bold; display: inline; float: left; }
+.forgot-password { font-size: 10px; display: inline; float: right; vertical-align: bottom; padding-top: 10px; }
+.center-text { text-align: center; }
+.error-message { font-size: 11px; }
+.navbar{ text-align: center; width : 100%; }
+
+.wrapper {
+    margin-right: auto;
+    margin-left:  auto;
+
+    padding-right: 10px;
+    padding-left:  10px;
+    border: 1px solid #A8A8A8;
+}
