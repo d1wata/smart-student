@@ -1,25 +1,23 @@
+Report: __log__({_from: indexed(address), _latitude: indexed(num256), _longitude: indexed(num256)})
+
 user: public({
 	enrolled: bool,
 	first_name: bytes32, # Legal first name
 	last_name: bytes32, # Legal last name
          }[address])
 
-	
-Report: __log__({_from: indexed(address), _latitude: num256, _longitude: num256})
+owner: address
 
-
+@public
 def __init__(_administrator: address):
 	self.owner = _administrator # Central authority
-	
-def inputReport(_latitude, _longitude):
+
+@public
+def inputReport(_latitude: num256, _longitude: num256):
 	assert self.user[msg.sender].enrolled 	# Throws if student is not yet enrolled
-	self.user[msg.sender]
-	log.Report(msg.sender, convert(_latitude, 'num256'), convert(_longitude, 'num256'))  # log reporting event.
-	
-def upgradeContract(_contract):
-	# work in progress code to upgrade contract after final implementation
+	log.Report(msg.sender, _latitude, _longitude)  # log reporting event.
 
-
+@public
 @payable
 def register(_first_name: bytes32, _last_name: bytes32):	
 	assert not self.user[msg.sender].enrolled    # Throws if user is already enrolled
@@ -28,5 +26,3 @@ def register(_first_name: bytes32, _last_name: bytes32):
 	self.user[msg.sender].first_name = _first_name
 	self.user[msg.sender].last_name = _last_name
 	self.user[msg.sender].enrolled = True
-	
-	
