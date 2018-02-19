@@ -1,5 +1,7 @@
 # smart-student
-Decentralized Student Identity using Ethereum and RFID - Experimental
+SKYNET BRANCH - Safety Reports on the Ethereum Blockchain
+
+https://jenerestain.github.io/smart-student
 
 **Language:** Viper (Experimental)
 
