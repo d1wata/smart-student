@@ -26,8 +26,8 @@
               </p>
 
               <p>
-                  <button v-on:click="addReports.manual">Manual Entry</button>
-                  <button v-on:click="addReports.GPS">GPS Entry</button>
+                  <button v-on:click="this.manual">Manual Entry</button>
+                  <button v-on:click="this.GPS">GPS Entry</button>
               </p>
 
             </div>
@@ -51,7 +51,6 @@
                     }
             
             
-
             
             // WEB3 INITIALIZATION
         
@@ -96,8 +95,9 @@
                      reports.ethReports.push({longitude: addReports.x, latitude: addReports.y});
                  },
                  manual: function(){
-                     if(addReports.alongitude != null && addReports.alatitude != null)
-                     reports.ethReports.push({longitude: addReports.alongitude, latitude: addReports.alatitude});
+                     if(alongitude != null && alatitude != null){
+                         reports.ethReports.push({longitude: alongitude, latitude: alatitude});
+                     }
                  }
                 }
             })
