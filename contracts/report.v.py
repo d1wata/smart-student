@@ -18,7 +18,6 @@ def inputReport(_latitude: num256, _longitude: num256):
 	log.Report(msg.sender, _latitude, _longitude)  # log reporting event.
 
 @public
-@payable
 def register(_first_name: bytes32, _last_name: bytes32):	
 	assert not self.user[msg.sender].enrolled    # Throws if user is already enrolled
 	
