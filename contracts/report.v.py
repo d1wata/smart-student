@@ -6,12 +6,6 @@ user: public({
 	last_name: bytes32, # Legal last name
          }[address])
 
-owner: address
-
-@public
-def __init__(_administrator: address):
-	self.owner = _administrator # Central authority
-
 @public
 def inputReport(_latitude: num256, _longitude: num256):
 	assert self.user[msg.sender].enrolled 	# Throws if student is not yet enrolled
