@@ -2,43 +2,45 @@
 <html>
     <head>
         <title>Web3 Testbed</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" />
     </head>
     <body>
         
-        <div id="reports">
-            <ol>
-                <li v-for="report in ethReports">
-                    {{ report.longitude }} | {{ report.latitude }}
-                </li>
-            </ol>
-        </div>
-            
-            <div id="app">
-
-              <p>
-                <label for="name">Longitude: <label>
-                <input type="text" name="longitude" id="longitude" v-model="this.alongitude">
-              </p>
-
-              <p>
-                <label for="name">Latitude: <label>
-                <input type="text" name="latitude" id="latitude" v-model="this.alatitude">
-              </p>
-
-              <p>
-                  <button v-on:click="this.manual">Manual Entry</button>
-                  <button v-on:click="this.GPS">GPS Entry</button>
-              </p>
-
+        <div class="container">
+            <div id="reports">
+                <ol>
+                    <li v-for="report in ethReports">
+                        {{ report.longitude }} | {{ report.latitude }}
+                    </li>
+                </ol>
             </div>
-        
-        
-        
+
+                <div class="container" id="app">
+
+                  <p>
+                    <label for="name">Longitude: <label>
+                    <input type="text" name="longitude" id="longitude" v-model="this.alongitude">
+                  </p>
+
+                  <p>
+                    <label for="name">Latitude: <label>
+                    <input type="text" name="latitude" id="latitude" v-model="this.alatitude">
+                  </p>
+
+                  <p>
+                      <button v-on:click="this.manual">Manual Entry</button>
+                      <button v-on:click="this.GPS">GPS Entry</button>
+                  </p>
+
+                </div>
+        </div>
         
         <!-- Le Javascript -->
-        
         <script src="https://cdn.jsdelivr.net/npm/web3@0.19.0/dist/web3.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+                  
+        <!-- Other Custom Javascript -->
+        <script src="./js/scripts.js></script>
         
         <script>
             
