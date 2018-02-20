@@ -93,10 +93,11 @@
                 },
                 methods: {
                  GPS: function(){
-                     reports.ethReports.push({longitude: addReports.x, latitude: addReports.y})
+                     reports.ethReports.push({longitude: addReports.x, latitude: addReports.y});
                  },
                  manual: function(){
-                     reports.ethReports.push({longitude: app.alongitude, latitude: app.alatitude})
+                     if(app.alongitude != null && app.alatitude != null)
+                     reports.ethReports.push({longitude: app.alongitude, latitude: app.alatitude});
                  }
                 }
             })
