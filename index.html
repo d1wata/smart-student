@@ -26,10 +26,8 @@
               </p>
 
               <p>
-                  <button v-on:click="reports.ethReports.push({longitude: this.alongitude, latitude: this.alatitude})
-">Manual Entry</button>
-                  <button v-on:click="reports.ethReports.push({longitude: addReports.x, latitude: addReports.y})
-">GPS Entry</button>
+                  <button v-on:click="app.manual">Manual Entry</button>
+                  <button v-on:click="app.GPS">GPS Entry</button>
               </p>
 
             </div>
@@ -92,6 +90,14 @@
                     alatitude:null,
                     x: 0,
                     y: 0
+                },
+                methods: {
+                 GPS: function(){
+                     reports.ethReports.push({longitude: addReports.x, latitude: addReports.y})
+                 },
+                 manual: function(){
+                     reports.ethReports.push({longitude: app.alongitude, latitude: app.alatitude})
+                 }
                 }
             })
               
