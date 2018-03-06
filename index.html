@@ -9,7 +9,6 @@
         <div class="container">
             <div id="reports">
                 <h2>Reports <small>Alpha 0.0.1</small></h2>
-                <div id="web3ui"><small><p v-model="this.balance"></p></div>
                 <ol>
                     <li v-for="report in ethReports">
                         {{ report.longitude }} | {{ report.latitude }}
@@ -71,8 +70,6 @@
                 new Web3.providers.HttpProvider("https://localhost:8545")
               );
             }
-                var balanceWei = web3.eth.getBalance(account).toNumber();  
-                web3UI.balance = web3.fromWei(balanceWei, 'ether');
           })
             
       
@@ -92,6 +89,9 @@
                 el: '#web3ui',
                 data: {
                     balance: 0
+                },
+                methods: {
+                    
                 }
             })
             
