@@ -32,6 +32,7 @@
                   <p>
                       <button v-on:click="this.manual">Manual Entry</button>
                       <button v-on:click="this.GPS">GPS Entry</button>
+                      <button v-on:click="this.register">Register</button>
                   </p>
 
                 </div>
@@ -75,15 +76,15 @@
             
       
             // VUE + WEB3 APPLICATION
-            var contractAddress = "0x4618c1d94DBDe4FE2767A34F6F06796E76795670"
-            var contract = web3.eth.contract(abiArray).at(contractAddress);
+            const contractAddress = "0x4618c1d94DBDe4FE2767A34F6F06796E76795670"
+            const contract = web3.eth.contract(abiArray).at(contractAddress);
             
       
             var reports = new Vue({
                 el: '#reports',
                 data: {
                     ethReports: [
-                        {longitude: '100', latitude: '200'}
+                        
                     ]   
                 }
             })
@@ -104,7 +105,8 @@
                     alongitude:null,
                     alatitude:null,
                     x: 0,
-                    y: 0
+                    y: 0,
+                    streets: []
                 },
                 methods: {
                  GPS: function(){
@@ -114,6 +116,13 @@
                      if(alongitude != null && alatitude != null){
                          reports.ethReports.push({longitude: alongitude, latitude: alatitude});
                      }
+                 },
+                 register: function(){
+                     contract.register(alongitude, alatitude, {value: 0, gas: 10000}, function(err, result){
+                         if(!error){
+                             console.log(result)
+                         }
+                     });
                  }
                 }
             })
