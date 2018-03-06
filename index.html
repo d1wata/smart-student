@@ -43,6 +43,7 @@
                   
         <!-- Other Custom Javascript -->
         <script src="./js/scripts.js"></script>
+        <script src="./js/abi.js"></script>
         
         <script>
             
@@ -74,6 +75,8 @@
             
       
             // VUE + WEB3 APPLICATION
+            var contractAddress = "0x4618c1d94DBDe4FE2767A34F6F06796E76795670"
+            var contract = web3.eth.contract(abiArray).at(contractAddress);
             
       
             var reports = new Vue({
