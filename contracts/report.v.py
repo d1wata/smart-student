@@ -1,4 +1,4 @@
-Report: __log__({_from: indexed(address), _latitude: indexed(num256), _longitude: indexed(num256)})
+Report: __log__({_from: indexed(address), _latitude: uint256, _longitude: uint256})
 
 user: public({
 	enrolled: bool,
@@ -7,7 +7,7 @@ user: public({
          }[address])
 
 @public
-def inputReport(_latitude: num256, _longitude: num256):
+def inputReport(_latitude: uint256, _longitude: uint256):
 	assert self.user[msg.sender].enrolled 	# Throws if student is not yet enrolled
 	log.Report(msg.sender, _latitude, _longitude)  # log reporting event.
 
