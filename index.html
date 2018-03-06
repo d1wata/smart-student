@@ -69,10 +69,10 @@
               // fallback - use your fallback strategy (local node / hosted node + in-dapp id mgmt / fail)
               window.web3 = new Web3(
                 new Web3.providers.HttpProvider("https://localhost:8545")
-                var balanceWei = web3.eth.getBalance(account).toNumber();  
-                web3UI.balance = web3.fromWei(balanceWei, 'ether');
               );
             }
+                var balanceWei = web3.eth.getBalance(account).toNumber();  
+                web3UI.balance = web3.fromWei(balanceWei, 'ether');
           })
             
       
