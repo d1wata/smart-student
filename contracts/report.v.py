@@ -5,6 +5,10 @@ user: public({
 	first_name: bytes32, # Legal first name
 	last_name: bytes32, # Legal last name
          }[address])
+	
+@public
+def isRegistered(addr: address):
+	return self.user[addr].enrolled
 
 @public
 def inputReport(_latitude: uint256, _longitude: uint256):
