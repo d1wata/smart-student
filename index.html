@@ -122,57 +122,67 @@
                 methods: {
                  GPS: function(){
                      if(addReports.x != null && addReports.y != null) {
-                         contract.inputReport(addReports.x, addReports.y, {value: 0, gas: 90000}, function(err, result){
+                         
+                          var arrX = addReports.x.split(".");
+                                 var k = arrX[1].substring(0,4);
+                         
+                                 if (k.length >= 4){
+                                    k = Math.round(k/10)
+                                 }
+                         
+                                 modx = arrX[0] + k
+                             
+                                 var arrY = addReports.y.split(".");
+                                 k = arrY[1].substring(0,4);
+                         
+                                 if (k.length >= 4){
+                                    k = Math.round(k/10)
+                                 }
+                         
+                                 mody = arrY[0] + k
+                         
+                                 var concater = modx/1000 + "," + mody/1000;
+                         
+                         contract.inputReport(mody, modx, {value: 0, gas: 90000}, function(err, result){
+                             
                                  if(!err){
                                      console.log(result)
                                  }
                              
-                                 var concater = addReports.y/1000 + "," + addReports.x/1000;
-                                 var k;
+                                 reports.ethReports.push({latitude: modx, longitude: mody, latlon: concater});
                              
-                                 var arrX = addReports.x.split(".");
-                                 if (arrX[1].length >= 4){
-                                    k = arrX[1].substring(0,4);
-                                    k = Math.round(k/10)
-                                 }
-                                 modx = arrX[0] + k
-                             
-                                 var arrY = addReports.y.split(".");
-                                 if (arrY[1].length >= 4){
-                                    k = arrY[1].substring(0,4);
-                                    k = Math.round(k/10)
-                                 }
-                                 modx = arrY[0] + k
-                             
-                 
-                                     
-                                     
-                                 reports.ethReports.push({latitude: addReports.y, longitude: addReports.x, latlon: concater});
                              });
                      }
                  },
                  manual: function(){
                      if(alongitude != null && alatitude != null){
-                         contract.inputReport(alongitude, alatitude, {value: 0, gas: 90000}, function(err, result){
-                             if(!err){
-                                 console.log(result)
-                             }
-                             var concater = alatitude/1000 + "," + alongitude/1000;
-                             reports.ethReports.push({latitude: modlat, longitude: modlong, latlon: concater});
-                             
-                             var arrX = alatitude.split(".");
-                                 if (arrX[1].length >= 4){
-                                    k = arrX[1].substring(0,4);
+                         
+                                 var arrX = alatitude.split(".");
+                                 var k = arrX[1].substring(0,4);
+                         
+                                 if (k.length >= 4){
                                     k = Math.round(k/10)
                                  }
+                         
                                  modx = arrX[0] + k
                              
                                  var arrY = alongitude.split(".");
-                                 if (arrY[1].length >= 4){
-                                    k = arrY[1].substring(0,4);
+                                 k = arrY[1].substring(0,4);
+                         
+                                 if (k.length >= 4){
                                     k = Math.round(k/10)
                                  }
-                                 modx = arrY[0] + k
+                         
+                                 mody = arrY[0] + k
+                                 var concater = modx/1000 + "," + mody/1000;
+                         
+                         contract.inputReport(mody, modx, {value: 0, gas: 90000}, function(err, result){
+                             
+                             if(!err){
+                                 console.log(result)
+                             }
+                             
+                             reports.ethReports.push({latitude: modx, longitude: mody, latlon: concater});  
                          });
                          
                      }
