@@ -85,7 +85,9 @@
                 let reportEvent = contract.Report({}, {fromBlock: 0, toBlock: 'latest'})
                 reportEvent.get((error, logs) => {
                   // Logs Retrieved
-                  logs.forEach(log => console.log(log.args))
+                  logs.forEach(function(){
+                    reports.ethReports.push({log.args})   
+                  })
                 })
             
       
