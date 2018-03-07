@@ -76,7 +76,8 @@
                     new Web3.providers.HttpProvider("https://localhost:8545")
                   );
                 }
-              
+          })
+            
                 const contractAddress = "0xe9fba6283e172a67126226a5b7a85146c9a09a21"
                 const contract = web3.eth.contract(abiArray).at(contractAddress);
               
@@ -84,10 +85,8 @@
                 let reportEvent = contract.Report({}, {fromBlock: 0, toBlock: 'latest'})
                 reportEvent.get((error, logs) => {
                   // Logs Retrieved
-                  logs.forEach(log => reports.ethReports.push({log.args}))
+                  logs.forEach(log => console.log(log.args))
                 })
-              
-          })
             
       
             // VUE + WEB3 APPLICATION
