@@ -80,7 +80,7 @@
                       var concater = lat/1000+","+long/1000
                       
                       
-                      reports.ethReports.push({latitude: lat, longitude: long, latlon: concater})
+                      reports.ethReports.unshift({latitude: lat, longitude: long, latlon: concater})
                       
                   }
                 })
@@ -152,7 +152,7 @@
                                      console.log(result)
                                  }
                              
-                                 reports.ethReports.push({latitude: modx, longitude: mody, latlon: concater});
+                                 reports.ethReports.unshift({latitude: modx, longitude: mody, latlon: concater});
                              
                              });
                      }
@@ -185,7 +185,7 @@
                                  console.log(result)
                              }
                              
-                             reports.ethReports.push({latitude: modx, longitude: mody, latlon: concater});  
+                             reports.ethReports.unshift({latitude: modx, longitude: mody, latlon: concater});  
                          });
                          
                      }
