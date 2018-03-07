@@ -9,11 +9,13 @@
         <div class="container">
             <div id="reports">
                 <h2>Reports <small>Alpha 0.0.2</small></h2>
-                <ol>
-                    <li v-for="report in ethReports">
-                        {{ report.longitude }} | {{ report.latitude }}
+                <ul style="list-style: none;">
+                    <li style="border: 1px solid #ccc; padding: 10px; color: #fff; font-weight: 800" v-for="report in ethReports">
+                        <img v-bind:src="'https://maps.googleapis.com/maps/api/staticmap?center='
+    +report.latlon+'&zoom=14&size=400x300&key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU'" />
+                        ({{ report.longitude }},{{ report.latitude }})
                     </li>
-                </ol>
+                </ul>
             </div>
                 <hr>
                 <div class="container" id="app">
@@ -55,11 +57,6 @@
                             addReports.y = position.coords.longitude;
                         });
                     }
-                    else {
-                        addReports.x = null;
-                        addReports.y = null;
-                    }
-            
             
             
             // WEB3 INITIALIZATION
@@ -80,10 +77,10 @@
             
                 const contractAddress = "0xe9fba6283e172a67126226a5b7a85146c9a09a21"
                 const contract = web3.eth.contract(abiArray).at(contractAddress);
-            
+                let reportEvent = contract.Report({}, {fromBlock: 0, toBlock: 'latest'})
+                
                 // POPULATE ethReports #reports Vue
                 
-                let reportEvent = contract.Report({}, {fromBlock: 0, toBlock: 'latest'})
                 reportEvent.get((error, logs) => {
                     
                   // Logs Retrieved
@@ -92,7 +89,8 @@
                       
                       var lat = master[i].args._latitude.c[0]
                       var long = master[i].args._longitude.c[0]
-                      reports.ethReports.push({longitude: long, latitude: lat })
+                      var concater = lat+","+long
+                      reports.ethReports.push({latitude: lat, longitude: long, latlon: concater})
                       
                   }
                 })
@@ -106,7 +104,7 @@
                 data: {
                     ethReports: [
                         // To be populated by event logs
-                    ]   
+                    ],
                 }
             })
 
@@ -127,7 +125,8 @@
                                  if(!err){
                                      console.log(result)
                                  }
-                                 reports.ethReports.push({longitude: addReports.x, latitude: addReports.y});
+                                 var concater = addReports.y + "," + addReports.x;
+                                 reports.ethReports.push({latitude: addReports.y, longitude: addReports.x, latlon: concater});
                              });
                      }
                  },
@@ -137,7 +136,8 @@
                              if(!err){
                                  console.log(result)
                              }
-                             reports.ethReports.push({longitude: alongitude, latitude: alatitude});
+                             var concater = alatitude + "," + alongitude;
+                             reports.ethReports.push({latitude: alatitude, longitude: alongitude, latlon: concater});
                          });
                          
                      }
