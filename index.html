@@ -188,16 +188,16 @@
                      }
                  },
                  register: function(){
-                     if(contract.isRegistered(web3.eth.accounts[0])){
+                    // if(contract.isRegistered(web3.eth.accounts[0])){
                          contract.register(alongitude, alatitude, {value: 0, gas: 90000}, function(err, result){
                              if(!err){
                                  console.log(result)
                              }
                          });
-                     }
-                     else{
-                         console.log("already registered")
-                     }
+                     //}
+                     //else{
+                     //    console.log("already registered")
+                     //}
                  }
                 }
             })
