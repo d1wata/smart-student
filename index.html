@@ -74,7 +74,7 @@
                 }
           })
             
-                const contractAddress = "0xe9fba6283e172a67126226a5b7a85146c9a09a21"
+                const contractAddress = "0xbacc5bc89341d32a8b8ecb21ccc5732a8fde690c"
                 const contract = web3.eth.contract(abiArray).at(contractAddress);
                 let reportEvent = contract.Report({}, {fromBlock: 0, toBlock: 'latest'})
                 
