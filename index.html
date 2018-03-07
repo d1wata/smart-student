@@ -3,43 +3,6 @@
     <head>
         <title>Skynet Reports Application</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" />
-        <script>
-             window.addEventListener("load", function() {
-                // Checking if Web3 has been injected by the browser (Mist/MetaMask)
-                if (typeof web3 !== "undefined") {
-                  // Use Mist/MetaMask's provider
-                  window.web3 = new Web3(web3.currentProvider);
-                } else {
-                  console.log("No web3? You should consider trying MetaMask!");
-                  // fallback - use your fallback strategy (local node / hosted node + in-dapp id mgmt / fail)
-                  window.web3 = new Web3(
-                    new Web3.providers.HttpProvider("https://localhost:8545")
-                  );
-                }
-          })
-            
-             const contractAddress = "0xbacc5bc89341d32a8b8ecb21ccc5732a8fde690c"
-                const contract = web3.eth.contract(abiArray).at(contractAddress);
-                let reportEvent = contract.Report({}, {fromBlock: 0, toBlock: 'latest'})
-                
-                // POPULATE ethReports #reports Vue
-                
-                reportEvent.get((error, logs) => {
-                    
-                  // Logs Retrieved
-                  var master = logs
-                  for (i=0;i<=logs.length;i++){
-                      
-                      var lat = master[i].args._latitude.c[0]
-                      var long = master[i].args._longitude.c[0]
-                      var concater = lat/1000+","+long/1000
-                      
-                      
-                      reports.ethReports.push({latitude: lat, longitude: long, latlon: concater})
-                      
-                  }
-                })
-        </script>
     </head>
     <body>
         
@@ -47,7 +10,7 @@
             <div id="reports">
                 <h2>Reports <small>Alpha</small></h2>
                 <ul style="list-style: none;">
-                    <li style="border: 1px solid #ccc; padding: 10px; color: #000; font-weight: 800" v-for="report in ethReports.reverse()">
+                    <li style="border: 1px solid #ccc; padding: 10px; color: #000; font-weight: 800" v-for="report in ethReports.slice().reverse()">
                         <center><img v-bind:src="'https://maps.googleapis.com/maps/api/staticmap?center='
     +report.latlon+'&zoom=13&size=400x300&key=AIzaSyBybZ0KgytdPJ1euNw8DAsXAjecqRQYFW0'" /></center>
                     </li>
@@ -85,6 +48,42 @@
         <script src="./js/abi.js"></script>
         
         <script>
+            
+              window.addEventListener("load", function() {
+                // Checking if Web3 has been injected by the browser (Mist/MetaMask)
+                if (typeof web3 !== "undefined") {
+                  // Use Mist/MetaMask's provider
+                  window.web3 = new Web3(web3.currentProvider);
+                } else {
+                  console.log("No web3? You should consider trying MetaMask!");
+                  // fallback - use your fallback strategy (local node / hosted node + in-dapp id mgmt / fail)
+                  window.web3 = new Web3(
+                    new Web3.providers.HttpProvider("https://localhost:8545")
+                  );
+                }
+          })
+            
+             const contractAddress = "0xbacc5bc89341d32a8b8ecb21ccc5732a8fde690c"
+                const contract = web3.eth.contract(abiArray).at(contractAddress);
+                let reportEvent = contract.Report({}, {fromBlock: 0, toBlock: 'latest'})
+                
+                // POPULATE ethReports #reports Vue
+                
+                reportEvent.get((error, logs) => {
+                    
+                  // Logs Retrieved
+                  var master = logs
+                  for (i=0;i<=logs.length;i++){
+                      
+                      var lat = master[i].args._latitude.c[0]
+                      var long = master[i].args._longitude.c[0]
+                      var concater = lat/1000+","+long/1000
+                      
+                      
+                      reports.ethReports.push({latitude: lat, longitude: long, latlon: concater})
+                      
+                  }
+                })
             
                     if ("geolocation" in navigator) {
                       /* geolocation is available */
