@@ -8,7 +8,7 @@
         
         <div class="container">
             <div id="reports">
-                <h2>Reports <small>Alpha 0.0.1</small></h2>
+                <h2>Reports <small>Alpha 0.0.2</small></h2>
                 <ol>
                     <li v-for="report in ethReports">
                         {{ report.longitude }} | {{ report.latitude }}
@@ -51,9 +51,13 @@
                     if ("geolocation" in navigator) {
                       /* geolocation is available */
                         navigator.geolocation.getCurrentPosition(function(position) {
-                            addReports.x = position.coords.latitude
-                            addReports.y = position.coords.longitude
+                            addReports.x = position.coords.latitude;
+                            addReports.y = position.coords.longitude;
                         });
+                    }
+                    else {
+                        addReports.x = null;
+                        addReports.y = null;
                     }
             
             
@@ -61,43 +65,43 @@
             // WEB3 INITIALIZATION
         
           window.addEventListener("load", function() {
-            // Checking if Web3 has been injected by the browser (Mist/MetaMask)
-            if (typeof web3 !== "undefined") {
-              // Use Mist/MetaMask's provider
-              window.web3 = new Web3(web3.currentProvider);
-            } else {
-              console.log("No web3? You should consider trying MetaMask!");
-              // fallback - use your fallback strategy (local node / hosted node + in-dapp id mgmt / fail)
-              window.web3 = new Web3(
-                new Web3.providers.HttpProvider("https://localhost:8545")
-              );
-            }
+                // Checking if Web3 has been injected by the browser (Mist/MetaMask)
+                if (typeof web3 !== "undefined") {
+                  // Use Mist/MetaMask's provider
+                  window.web3 = new Web3(web3.currentProvider);
+                } else {
+                  console.log("No web3? You should consider trying MetaMask!");
+                  // fallback - use your fallback strategy (local node / hosted node + in-dapp id mgmt / fail)
+                  window.web3 = new Web3(
+                    new Web3.providers.HttpProvider("https://localhost:8545")
+                  );
+                }
+              
+                const contractAddress = "0xe9fba6283e172a67126226a5b7a85146c9a09a21"
+                const contract = web3.eth.contract(abiArray).at(contractAddress);
+              
+                // POPULATE ethReports #reports Vue
+                let reportEvent = contract.Report({}, {fromBlock: 0, toBlock: 'latest'})
+                reportEvent.get((error, logs) => {
+                  // Logs Retrieved
+                  logs.forEach(log => reports.ethReports.push({log.args}))
+                })
+              
           })
             
       
             // VUE + WEB3 APPLICATION
-            const contractAddress = "0xe9fba6283e172a67126226a5b7a85146c9a09a21"
-            const contract = web3.eth.contract(abiArray).at(contractAddress);
             
       
             var reports = new Vue({
                 el: '#reports',
                 data: {
                     ethReports: [
-                        
+                        // To be populated by event logs
                     ]   
                 }
             })
-            
-            var web3UI = new Vue({
-                el: '#web3ui',
-                data: {
-                    balance: 0
-                },
-                methods: {
-                    
-                }
-            })
+
             
             var addReports = new Vue({
                 el: '#app',
@@ -110,19 +114,36 @@
                 },
                 methods: {
                  GPS: function(){
-                     reports.ethReports.push({longitude: addReports.x, latitude: addReports.y});
+                     if(addReports.x != null && addReports.y != null) {
+                         // reports.ethReports.push({longitude: addReports.x, latitude: addReports.y});
+                         contract.inputReport(addReports.x, addReports.y, {value: 0, gas: 90000}, function(err, result){
+                                 if(!err){
+                                     console.log(result)
+                                 }
+                             });
+                     }
                  },
                  manual: function(){
                      if(alongitude != null && alatitude != null){
-                         reports.ethReports.push({longitude: alongitude, latitude: alatitude});
+                     // reports.ethReports.push({longitude: alongitude, latitude: alatitude});
+                         contract.inputReport(alongitude, alatitude, {value: 0, gas: 90000}, function(err, result){
+                             if(!err){
+                                 console.log(result)
+                             }
+                         });
                      }
                  },
                  register: function(){
-                     contract.register(alongitude, alatitude, {value: 0, gas: 60000}, function(err, result){
-                         if(!err){
-                             console.log(result)
-                         }
-                     });
+                     if(contract.isRegistered(web3.eth.accounts[0])){
+                         contract.register(alongitude, alatitude, {value: 0, gas: 90000}, function(err, result){
+                             if(!err){
+                                 console.log(result)
+                             }
+                         });
+                     }
+                     else{
+                         console.log("already registered")
+                     }
                  }
                 }
             })
