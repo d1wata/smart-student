@@ -12,8 +12,7 @@
                 <ul style="list-style: none;">
                     <li style="border: 1px solid #ccc; padding: 10px; color: #000; font-weight: 800" v-for="report in ethReports">
                         <center><img v-bind:src="'https://maps.googleapis.com/maps/api/staticmap?center='
-    +report.latlon+'&zoom=18&size=400x300&key=AIzaSyBybZ0KgytdPJ1euNw8DAsXAjecqRQYFW0'" />
-                            ({{ report.longitude }},{{ report.latitude }})</center>
+    +report.latlon+'&zoom=18&size=400x300&key=AIzaSyBybZ0KgytdPJ1euNw8DAsXAjecqRQYFW0'" /></center>
                     </li>
                 </ul>
             </div>
@@ -89,7 +88,9 @@
                       
                       var lat = master[i].args._latitude.c[0]
                       var long = master[i].args._longitude.c[0]
-                      var concater = lat.toFixed(3)+","+long.toFixed(3)
+                      var concater = lat/1000+","+long/1000
+                      
+                      
                       reports.ethReports.push({latitude: lat, longitude: long, latlon: concater})
                       
                   }
@@ -125,7 +126,27 @@
                                  if(!err){
                                      console.log(result)
                                  }
-                                 var concater = addReports.y.toFixed(3) + "," + addReports.x.toFixed(3);
+                             
+                                 var concater = addReports.y/1000 + "," + addReports.x/1000;
+                                 var k;
+                             
+                                 var arrX = addReports.x.split(".");
+                                 if (arrX[1].length >= 4){
+                                    k = arrX[1].substring(0,4);
+                                    k = Math.round(k/10)
+                                 }
+                                 modx = arrX[0] + k
+                             
+                                 var arrY = addReports.y.split(".");
+                                 if (arrY[1].length >= 4){
+                                    k = arrY[1].substring(0,4);
+                                    k = Math.round(k/10)
+                                 }
+                                 modx = arrY[0] + k
+                             
+                 
+                                     
+                                     
                                  reports.ethReports.push({latitude: addReports.y, longitude: addReports.x, latlon: concater});
                              });
                      }
@@ -136,8 +157,22 @@
                              if(!err){
                                  console.log(result)
                              }
-                             var concater = alatitude.toFixed(3) + "," + alongitude.toFixed(3);
-                             reports.ethReports.push({latitude: alatitude, longitude: alongitude, latlon: concater});
+                             var concater = alatitude/1000 + "," + alongitude/1000;
+                             reports.ethReports.push({latitude: modlat, longitude: modlong, latlon: concater});
+                             
+                             var arrX = alatitude.split(".");
+                                 if (arrX[1].length >= 4){
+                                    k = arrX[1].substring(0,4);
+                                    k = Math.round(k/10)
+                                 }
+                                 modx = arrX[0] + k
+                             
+                                 var arrY = alongitude.split(".");
+                                 if (arrY[1].length >= 4){
+                                    k = arrY[1].substring(0,4);
+                                    k = Math.round(k/10)
+                                 }
+                                 modx = arrY[0] + k
                          });
                          
                      }
