@@ -80,14 +80,17 @@
             
                 const contractAddress = "0xe9fba6283e172a67126226a5b7a85146c9a09a21"
                 const contract = web3.eth.contract(abiArray).at(contractAddress);
+            
+                var reportos = []
               
                 // POPULATE ethReports #reports Vue
                 let reportEvent = contract.Report({}, {fromBlock: 0, toBlock: 'latest'})
                 reportEvent.get((error, logs) => {
                   // Logs Retrieved
-                  logs.forEach(function(){
-                    reports.ethReports.push(log.args)   
-                  })
+                  var logAmt = logs.length
+                  for (i=0;i<=logAmt;i++){
+                      reports.ethReports.push({latitude: logs[i].args._latitude.c, longitude: logs[i].args._longitude.c})
+                  }
                 })
             
       
