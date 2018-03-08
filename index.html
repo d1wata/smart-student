@@ -126,6 +126,8 @@
                  GPS: function(){
                      if(addReports.x != null && addReports.y != null) {
                          
+                            addReports.x = addReports.x.toFixed(4)
+                            addReports.y = addReports.y.toFixed(4)
                           var arrX = String(addReports.x).split(".");
                                  var k = arrX[1].substring(0,4);
                          
@@ -160,6 +162,8 @@
                  manual: function(){
                      if(alongitude != null && alatitude != null){
                          
+                                 alatitude = alatitude.toFixed(4)
+                                 alongitude = longitude.toFixed(4)
                                  var arrX = String(alatitude).split(".");
                                  var k = arrX[1].substring(0,4);
                          
