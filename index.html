@@ -125,26 +125,37 @@
                 methods: {
                  GPS: function(){
                      if(addReports.x != null && addReports.y != null) {
+                        
+                                 var arrX = String(addReports.x).split(".");
                          
-                            addReports.x = addReports.x.toFixed(4)
-                            addReports.y = addReports.y.toFixed(4)
-                          var arrX = String(addReports.x).split(".");
-                                 var k = arrX[1].substring(0,4);
+                                 if(arrX.length == 2)
+                                     
+                                    var k = arrX[1].substring(0,4);
                          
-                                 if (k.length >= 4){
-                                    k = Math.round(k/10)
-                                 }
+                                    if (k.length >= 4){
+                                        k = Math.round(k/10)
+                                    }
+
+                                    modx = arrX[0] + k
                          
-                                 modx = arrX[0] + k
+                                 else
+                                    modx = arrX[0]
+                         
+                                 
                              
                                  var arrY = String(addReports.y).split(".");
-                                 k = arrY[1].substring(0,4);
+                                 if(arrY.length == 2)
+                                     
+                                    k = arrY[1].substring(0,4);
                          
-                                 if (k.length >= 4){
-                                    k = Math.round(k/10)
-                                 }
+                                    if (k.length >= 4){
+                                        k = Math.round(k/10)
+                                    }
+
+                                    modx = arrY[0] + k
                          
-                                 mody = arrY[0] + k
+                                 else
+                                    modx = arrY[0]
                          
                                  var concater = modx/1000 + "," + mody/1000;
                          
@@ -162,25 +173,37 @@
                  manual: function(){
                      if(alongitude != null && alatitude != null){
                          
-                                 alatitude = alatitude.toFixed(4)
-                                 alongitude = longitude.toFixed(4)
                                  var arrX = String(alatitude).split(".");
-                                 var k = arrX[1].substring(0,4);
                          
-                                 if (k.length >= 4){
-                                    k = Math.round(k/10)
-                                 }
+                                 if(arrX.length == 2)
+                                     
+                                    var k = arrX[1].substring(0,4);
                          
-                                 modx = arrX[0] + k
+                                    if (k.length >= 4){
+                                        k = Math.round(k/10)
+                                    }
+
+                                    modx = arrX[0] + k
+                         
+                                 else
+                                    modx = arrX[0]
+                         
+                                 
                              
                                  var arrY = String(alongitude).split(".");
-                                 k = arrY[1].substring(0,4);
+                                 if(arrY.length == 2)
+                                     
+                                    k = arrY[1].substring(0,4);
                          
-                                 if (k.length >= 4){
-                                    k = Math.round(k/10)
-                                 }
+                                    if (k.length >= 4){
+                                        k = Math.round(k/10)
+                                    }
+
+                                    modx = arrY[0] + k
                          
-                                 mody = arrY[0] + k
+                                 else
+                                    modx = arrY[0]
+						 
                                  var concater = modx/1000 + "," + mody/1000;
                          
                          contract.inputReport(mody, modx, {value: 0, gas: 90000}, function(err, result){
