@@ -1,14 +1,11 @@
 # smart-student
-SKYNET BRANCH - Safety Reports on the Ethereum Blockchain
-
-https://jenerestain.github.io/smart-student
+Decentralized Student Identity using Ethereum and RFID - Experimental
 
 **Language:** Viper (Experimental)
 
 **Authors:**
 
 * JM Erestain - Blockchain Developer
-* Andre Cauilan - RFID and Hardware
 * Antoine Oropesa - Front-end Developer
 
 ## Installation:
@@ -17,3 +14,8 @@ https://jenerestain.github.io/smart-student
 
 ## LICENSE:
 MIT License
+
+## TODO:
+- Populate existing map locally
+- Submit through Ethereum Blockchain
+
