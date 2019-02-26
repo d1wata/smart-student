@@ -1,4 +1,4 @@
-Report: __log__({_from: indexed(address), _latitude: decimal, _longitude: decimal})
+Report: event({_from: indexed(address), _latitude: decimal, _longitude: decimal})
 
 user: public({
 	enrolled: bool,
