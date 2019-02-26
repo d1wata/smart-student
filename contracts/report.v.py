@@ -7,7 +7,7 @@ user: public({
          }[address])
 	
 @public
-def isRegistered(addr: address):
+def isRegistered(addr: address) -> bool:
 	return self.user[addr].enrolled
 
 @public
