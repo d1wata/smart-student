@@ -6,7 +6,6 @@ Decentralized Student Identity using Ethereum and RFID - Experimental
 **Authors:**
 
 * JM Erestain - Blockchain Developer
-* Andre Cauilan - RFID and Hardware
 * Antoine Oropesa - Front-end Developer
 
 ## Installation:
@@ -15,3 +14,7 @@ Decentralized Student Identity using Ethereum and RFID - Experimental
 
 ## LICENSE:
 MIT License
+
+## TODO:
+- Populate existing map locally
+- Submit through Ethereum Blockchain
