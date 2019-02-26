@@ -1,0 +1,100 @@
+[seq,
+  [return,
+    0,
+    [lll,
+      [seq,
+        [mstore, 28, [calldataload, 0]],
+        [mstore, 32, 1461501637330902918203684832716283019655932542976],
+        [mstore, 64, 170141183460469231731687303715884105727],
+        [mstore, 96, -170141183460469231731687303715884105728],
+        [mstore, 128, 1701411834604692317316873037158841057270000000000],
+        [mstore, 160, -1701411834604692317316873037158841057280000000000],
+        # Line 9
+        [if,
+          [eq, [mload, 0], 3284510023 <isRegistered>],
+          [seq,
+            [calldatacopy, 320, 4, 32],
+            [assert, [iszero, callvalue]],
+            /* checking address input */ [uclamplt, [calldataload, 4], [mload, 32]],
+            # Line 11
+            [mstore, 0, [sload, [sha3_32, [sha3_64, 0 <self.user>, [mload, 320 <addr>]]]]],
+            [return, 0, 32],
+            # Line 9
+            stop]],
+        # Line 13
+        [if,
+          [eq, [mload, 0], 2923269489 <inputReport>],
+          [seq,
+            [calldatacopy, 320, 4, 64],
+            [assert, [iszero, callvalue]],
+            # Line 15
+            [assert, [sload, [sha3_32, [sha3_64, 0 <self.user>, caller]]]],
+            # Line 16
+            [mstore, 384, [mload, 320 <_latitude>]],
+            [mstore, 416, [mload, 352 <_longitude>]],
+            [log2,
+              384,
+              64,
+              29904398201189214266134143775634607834708444229552732720968302974775240334919,
+              caller],
+            # Line 13
+            stop]],
+        # Line 18
+        [if,
+          [eq, [mload, 0], 798123826 <register>],
+          [seq,
+            [calldatacopy, 320, 4, 64],
+            [assert, [iszero, callvalue]],
+            # Line 20
+            [assert, [iszero, [sload, [sha3_32, [sha3_64, 0 <self.user>, caller]]]]],
+            # Line 23
+            [sstore,
+              [add, [sha3_32, [sha3_64, 0 <self.user>, caller]], 1 <first_name>],
+              [mload, 320 <_first_name>]],
+            # Line 24
+            [sstore,
+              [add, [sha3_32, [sha3_64, 0 <self.user>, caller]], 2 <last_name>],
+              [mload, 352 <_last_name>]],
+            # Line 25
+            [sstore, [sha3_32, [sha3_64, 0 <self.user>, caller]], 1],
+            # Line 18
+            stop]],
+        # Line 3
+        [if,
+          [eq, [mload, 0], 2699020853 <user__enrolled>],
+          [seq,
+            [calldatacopy, 320, 4, 32],
+            [assert, [iszero, callvalue]],
+            /* checking address input */ [uclamplt, [calldataload, 4], [mload, 32]],
+            # Line 5
+            [mstore, 0, [sload, [sha3_32, [sha3_64, 0 <self.user>, [mload, 320 <arg0>]]]]],
+            [return, 0, 32],
+            # Line 3
+            stop]],
+        [if,
+          [eq, [mload, 0], 187048877 <user__first_name>],
+          [seq,
+            [calldatacopy, 320, 4, 32],
+            [assert, [iszero, callvalue]],
+            /* checking address input */ [uclamplt, [calldataload, 4], [mload, 32]],
+            # Line 5
+            [mstore,
+              0,
+              [sload, [add, [sha3_32, [sha3_64, 0 <self.user>, [mload, 320 <arg0>]]], 1 <first_name>]]],
+            [return, 0, 32],
+            # Line 3
+            stop]],
+        [if,
+          [eq, [mload, 0], 2840649401 <user__last_name>],
+          [seq,
+            [calldatacopy, 320, 4, 32],
+            [assert, [iszero, callvalue]],
+            /* checking address input */ [uclamplt, [calldataload, 4], [mload, 32]],
+            # Line 5
+            [mstore,
+              0,
+              [sload, [add, [sha3_32, [sha3_64, 0 <self.user>, [mload, 320 <arg0>]]], 2 <last_name>]]],
+            [return, 0, 32],
+            # Line 3
+            stop]]],
+      0]]]
