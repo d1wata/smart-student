@@ -37,8 +37,8 @@
           	})
             
              const contractAddress = "0x7752c75922fe6c90b91b85e6daca2d89c3e34ad2"
-                const contract = web3.eth.contract(abiArray).at(contractAddress);
-                let reportEvent = contract.Report({}, {fromBlock: 0, toBlock: 'latest'})	    
+             const contract = web3.eth.contract(abiArray).at(contractAddress);
+             let events = contract.Report({}, {fromBlock: 0, toBlock: 'latest'});	    
 	    
       // Note: This example requires that you consent to location sharing when
       // prompted by your browser. If you see the error "The Geolocation service
@@ -79,9 +79,9 @@
         }
       ];
 	      
-  // POPULATE ethReports #reports Vue
+  // Populate markers
                 
-             reportEvent.get((error, logs) => {
+       var events.get((error, logs) => {
                     
                 // Logs Retrieved
                  var master = logs
