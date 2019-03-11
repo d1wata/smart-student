@@ -17,10 +17,36 @@
         padding: 0;
       }
     </style>
+	  
+	   <!-- Le Javascript -->
+        <script src="https://cdn.jsdelivr.net/npm/web3@0.19.0/dist/web3.min.js"></script>
+                
+        <!-- Other Custom Javascript -->
+        <script src="./js/scripts.js"></script>
+        <script src="./js/abi.js"></script>
+
   </head>
   <body>
     <div id="map"></div>
     <script>
+	    
+	    window.addEventListener("load", function() {
+			// Checking if Web3 has been injected by the browser (Mist/MetaMask)
+			if (typeof web3 !== "undefined") {
+			  // Use Mist/MetaMask's provider
+			  window.web3 = new Web3(web3.currentProvider);
+			} else {
+			  console.log("No web3? You should consider trying MetaMask!");
+			  // fallback - use your fallback strategy (local node / hosted node + in-dapp id mgmt / fail)
+			  window.web3 = new Web3(
+			    new Web3.providers.HttpProvider("https://localhost:8545")
+			  );
+			}
+          	})
+		  
+	     const contractAddress = "0x7752c75922fe6c90b91b85e6daca2d89c3e34ad2" // Upload Contract - UNUSABLE DUE TO UNUPLOADED CONTRACT
+             const contract = web3.eth.contract(abiArray).at(contractAddress);
+	    
       // Note: This example requires that you consent to location sharing when
       // prompted by your browser. If you see the error "The Geolocation service
       // failed.", it means you probably did not give permission for the browser to
@@ -78,6 +104,25 @@
         // Add marker
         addMarker(markers[i]);
       }
+	      
+     // INITIALIZE REPORTS
+      let reportEvent = contract.Report({}, {fromBlock: 0, toBlock: 'latest'})
+      
+      reportEvent.get((error, logs) => {
+                    
+                  // Logs Retrieved
+                  var master = logs
+                  for (i=0;i<=logs.length;i++){
+                      
+                      var _lat = master[i].args._latitude.c[0]
+                      var _lng = master[i].args._longitude.c[0]
+                      var _cont = master[i].args._content.c[0]
+                      
+                      
+                      markers.unshift({coords:{lat: _lat, lng: _lng}, content: _cont})
+                      
+                  }
+                })
 
       // Add Marker Function
       function addMarker(props){
@@ -113,6 +158,8 @@ marker.addListener('click', function(){
           var lat = myLatLng.lat();
           var lng = myLatLng.lng();
           console.log(lat, lng);
+		
+	  contract.inputReport(lat, lng, {value: 0, gas: 90000});
       	});
       }
 
