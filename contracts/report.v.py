@@ -1,4 +1,4 @@
-Report: event({_from: indexed(address), _latitude: decimal, _longitude: decimal, _content: bytes64})
+Report: event({_from: indexed(address), _latitude: uint256, _longitude: uint256, _content: bytes32})
 
 user: public({
 	enrolled: bool,
@@ -11,7 +11,7 @@ def isRegistered(addr: address) -> bool:
 	return self.user[addr].enrolled
 
 @public
-def inputReport(_latitude: decimal, _longitude: decimal, _content: bytes64):
+def inputReport(_latitude: uint256, _longitude: uint256, _content: bytes32):
 	assert self.user[msg.sender].enrolled 	# Throws if student is not yet enrolled
 	log.Report(msg.sender, _latitude, _longitude, _content)  # log reporting event.
 
