@@ -163,7 +163,11 @@ marker.addListener('click', function(){
           console.log(lat, lng);
 		
 	  // ADD CONTENT VARIABLE ANTOINE	
-	  contract.inputReport(lat, lng, "Report in this area", {value: 0, gas: 90000});
+	  contract.inputReport(lat, lng, "Report in this area", {value: 0, gas: 90000}, function(err, result){
+		if(!err){
+			console.log(result)
+		}
+	  });
       	});
       }
 
