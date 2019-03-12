@@ -106,7 +106,7 @@
       }
 	      
      // INITIALIZE REPORTS
-     /* let reportEvent = contract.Report({}, {fromBlock: 0, toBlock: 'latest'})
+     let reportEvent = contract.allEvents({}, {fromBlock: 0, toBlock: 'latest'})
       
       reportEvent.get((error, logs) => {
                     
@@ -123,7 +123,6 @@
                       
                   }
                 })
-	*/
 
       // Add Marker Function
       function addMarker(props){
