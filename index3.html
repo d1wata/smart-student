@@ -44,7 +44,7 @@
 			}
           	})
 		  
-	     const contractAddress = "0x60a70d7b0f054deb51193d413d85a036f9519c19" // Upload Contract - UNUSABLE DUE TO UNUPLOADED CONTRACT
+	     const contractAddress = "0x7752c75922fe6c90b91b85e6daca2d89c3e34ad2"
              const contract = web3.eth.contract(abiArray).at(contractAddress);
 	    
       // Note: This example requires that you consent to location sharing when
@@ -158,6 +158,8 @@ marker.addListener('click', function(){
           var myLatLng = event.latLng;
           var lat = myLatLng.lat();
           var lng = myLatLng.lng();
+	  lat = Math.floor(lat * 10000000000)
+	  lng = Math.floor(lng * 10000000000)
           console.log(lat, lng);
 		
 	  // ADD CONTENT VARIABLE ANTOINE	
