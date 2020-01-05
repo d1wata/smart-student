@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Skynet</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link rel ="stylesheet" href="index.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body>
+  <!-- NAVBAR -->
+  <div class="container-fluid" id ="navbar">
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container-fluid navbar-border">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#"><i class="fa fa-home"  aria-hidden="true"></i> Skynet</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#"><i class="fa fa-building"></i> About</a></li>
+            <li><a href="#"><i class="fa fa-phone"></i> Contact</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-anchor"></i> Support <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="#"><i class="fa fa-envelope"></i> Email</a></li>
+                <li><a href="#"><i class="fa fa-comments"></i> Chat</a></li>
+                <li><a href="#"><i class="fa fa-phone"></i> Phone Support</a></li>
+                <li class="divider"></li>
+              </ul>
+            </li>
+            <li>
+                <form class="navbar-form" role="search">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="search" name="q">
+                    <div class="input-group-btn">
+                        <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+                    </div>
+                </div>
+                </form>
+            </li>
+            <li><a href="#"><i class="fa fa-twitter color-twitter"></i></a></li>
+            <li><a href="#"><i class="fa fa-facebook color-facebook"></i></a></li>
+            <li><a href="#"><i class="fa fa-linkedin color-linkedin"></i></a></li>
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cogs"></i> <b class="color-blue">Login</b> <span class="caret"></span></a>
+              <ul class="dropdown-menu login-panel">
+                <li>
+                    <div class="dropdown-header">
+                        <span class="login-header color-blue">Sign In</span>
+                        <span class="forgot-password color-blue"><a href="">Forgot password?</a></span>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div style="padding: 8px;">
+                        <form id="loginform" class="form-horizontal" role="form"  autocomplete="off">
+                            <div style="margin-bottom: 10px" class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user color-blue"></i></span>
+                                <!-- USERNAME OR EMAIL ADDRESS -->
+                                <input id="login-username" type="text" class="form-control" name="username" value="" placeholder="username or email" pattern="[a-zA-Z0-9]{5,}" title="Minimum 5 letters or numbers." oninvalid="this.setCustomValidity('Enter User Name Here')" oninput="setCustomValidity('')" required>
+                            </div>
+                            <div style="margin-bottom: 10px" class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-lock color-blue"></i></span>
+                                <!--  PASSWORD  -->
+                                <input id="login-password" type="password" class="form-control" name="password" placeholder="password" pattern=".{5,}" title="Minmimum 5 letters or numbers." oninvalid="this.setCustomValidity('Enter a password')" oninput="setCustomValidity('')" required>
+                            </div>
+                            <div class="center-text">
+                                <label><input id="login-remember" type="checkbox" name="remember" value="1"> Remember me</label>
+                            </div>
+                            <div class="center-text">
+                                <span class="error-message color-red"><i class="glyphicon glyphicon-warning-sign"></i> Username & password don't match!</span>
+                            </div>
+                            <div style="margin-top:10px" class="form-group">
+                                <!-- Button -->
+                                <div class="col-sm-12 controls center-text">
+                                  <a id="btn-login" href="#" class="btn btn-block btn-success">Login</a>
+                                  <!--<a id="btn-fblogin" href="#" class="btn btn-primary">Login with Facebook</a>-->
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </li>
+                <!--<li class="divider"></li>-->
+              </ul>
+            </li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+  </div>
+
+  <!-- INPUTS -->
+  <div class="wrapper">
+    <div class="container">
+      <div class="row">
+        <div class = "panel-group">
+          <div class="panel panel-default">
+            <div class="panel-heading"> Home </div>
+          </div>
+          <div class="panel panel-default">
+            <div class ="panel-body"> input </div>
+          </div>
+          <div class="panel panel-default">
+            <div class ="panel-body"> avatar the master of all sex positions. </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
